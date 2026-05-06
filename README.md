@@ -29,3 +29,8 @@ A comprehensive **Power BI** interactive dashboard designed for business intelli
 - Power Query (M Language)
 - Modern Power BI Theming
 - Advanced Visualizations
+  
+# Author
+
+Mohamed Khallaf
+Computer Science Student | Data Science and AI
