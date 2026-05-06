@@ -13,11 +13,6 @@ A comprehensive **Power BI** interactive dashboard designed for business intelli
 - **Interactive Visualizations** with cross-filtering
 - **Professional Design** with modern theming
 
-## 📸 Dashboard Preview
-
-![Dashboard Preview](images/preview.png)
-<!-- Replace with actual screenshot after uploading -->
-
 ##  How to Use
 
 1. Download the `project.pbix` file
