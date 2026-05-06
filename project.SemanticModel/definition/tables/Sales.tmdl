@@ -1,0 +1,251 @@
+table Sales
+	lineageTag: 1b6e0134-9485-40cb-9321-9257575e4930
+
+	measure 'Total Sales' = SUM(Sales[sales_amount])
+		lineageTag: 879efe3b-6d77-4893-8cf7-295d32603c88
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Cost' = SUM(Sales[Cost])
+		lineageTag: ed8677ac-ae22-4eca-bca9-937b00869ea5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Profit' = [Total Sales] - [Total Cost]
+		lineageTag: 74770816-3e5b-40ad-b486-022e85a08447
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Percent' = DIVIDE([Total Profit], [Total Sales])
+		lineageTag: c7520a5f-3b85-4905-b521-e487b859b0f9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Count of Trans' = COUNTROWS(Sales)
+		formatString: 0
+		lineageTag: 1086f0aa-1f11-4994-8367-08c5c9c45126
+
+	measure 'Profit Margin %' = ```
+			DIVIDE([Total Profit], [Total Sales])
+			
+			```
+		lineageTag: e0442638-3abb-40c8-ae4b-4415e99affc8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Quantity' = ```
+			SUM(Sales[Quantity])
+			
+			```
+		formatString: 0
+		lineageTag: 480e1f48-dec4-41ad-baea-0a16d217d48a
+
+	measure 'New Customers' = ```
+			
+			DISTINCTCOUNT('Sales'[customer_id])
+			
+			```
+		formatString: 0
+		lineageTag: 438da108-5abc-4d3e-ad72-969fa0d178df
+
+	column transaction_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ecfa58ef-1a65-4b12-85db-e6469d878cdc
+		summarizeBy: none
+		sourceColumn: transaction_date
+
+		variation Variation
+			isDefault
+			relationship: 22e4a40f-f02f-48dc-b1e7-f6cc77cc4371
+			defaultHierarchy: LocalDateTable_5858ffeb-2a29-40e4-915a-d41aa81fa89d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column stock_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 21d92234-890d-40e9-b56b-f33518f4722e
+		summarizeBy: none
+		sourceColumn: stock_date
+
+		variation Variation
+			isDefault
+			relationship: 9fd2cfee-d481-4525-9592-a44bc9d4197d
+			defaultHierarchy: LocalDateTable_795ef29e-a092-4060-8d9a-2e6cc382c65f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a7551e0c-e4b9-43b2-838a-7b4bec6b72d4
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: aac1de74-754e-4364-b33c-a1376e3adc4a
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b4a15a22-b59b-4946-a16d-9c6bffa7c6f5
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 21328564-2c34-4439-9e95-164ed14a3fa4
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Products.product_retail_price'
+		dataType: double
+		lineageTag: 17a6a0b4-8855-45fb-b10c-9cdd189e79b4
+		summarizeBy: sum
+		sourceColumn: Products.product_retail_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Products.product_cost'
+		dataType: double
+		lineageTag: 1fe2dff8-5fc8-475c-a091-837a68a6da8c
+		summarizeBy: sum
+		sourceColumn: Products.product_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sales_amount
+		dataType: double
+		lineageTag: 58867ed8-c32a-40b7-b426-44c131332b38
+		summarizeBy: sum
+		sourceColumn: sales_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cost
+		dataType: double
+		lineageTag: f2c19f99-18e2-48ed-b6e7-25d4c78881d6
+		summarizeBy: sum
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year = ```
+			YEAR(Sales[transaction_date])
+			
+			```
+		formatString: 0
+		lineageTag: fffdc3b7-99c1-4875-88d9-0cd8001498b7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = ```
+			FORMAT(Sales[transaction_date], "MMM")
+			
+			```
+		lineageTag: a65562b6-83de-47ba-8425-bb744691f5ff
+		summarizeBy: none
+		sortByColumn: MonthNum
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum = ```
+			MONTH(Sales[transaction_date])
+			
+			```
+		formatString: 0
+		lineageTag: eca86c5b-f747-4c9a-90e9-e56e0b704d42
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'First Purchase Date' = ```
+			
+			CALCULATE(
+			    MIN(Sales[transaction_date]),
+			    ALLEXCEPT(Sales, Sales[customer_id] )
+			)
+			
+			```
+		formatString: General Date
+		lineageTag: faf78742-8bdf-431f-9582-b7b178f408d0
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 5700d749-922a-4bcc-8ae8-9c37f44b69a7
+			defaultHierarchy: LocalDateTable_6c8be016-8977-4a12-8978-d4b7cd51fba9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Join Year' = ```
+			YEAR([First Purchase Date])
+			
+			```
+		formatString: 0
+		lineageTag: 3a5c9754-bc1b-438b-8b09-e11084c9e572
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Join Month' = ```
+			FORMAT([First Purchase Date], "MMM ")
+			
+			```
+		lineageTag: 9b3f11dc-1245-4121-98dc-6af227728e23
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\hamo0\Downloads\Sales.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"transaction_date", type date}, {"stock_date", type date}, {"product_id", Int64.Type}, {"customer_id", Int64.Type}, {"store_id", Int64.Type}, {"quantity", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each true),
+				    #"Merged Queries" = Table.NestedJoin(#"Filtered Rows", {"product_id"}, Products, {"product_id"}, "Products", JoinKind.LeftOuter),
+				    #"Expanded Products" = Table.ExpandTableColumn(#"Merged Queries", "Products", {"product_retail_price", "product_cost"}, {"Products.product_retail_price", "Products.product_cost"}),
+				    #"Added Custom" = Table.AddColumn(#"Expanded Products", "sales_amount", each [quantity] * [product_retail_price]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"sales_amount", type number}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"sales_amount"}),
+				    #"Added Custom1" = Table.AddColumn(#"Removed Columns", "sales_amount", each [quantity] * [Products.product_retail_price]),
+				    #"Added Custom2" = Table.AddColumn(#"Added Custom1", "cost", each [quantity]*[Products.product_cost]),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom2",{{"sales_amount", type number}, {"cost", type number}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

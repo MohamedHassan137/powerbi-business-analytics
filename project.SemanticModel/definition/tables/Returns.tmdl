@@ -1,0 +1,83 @@
+table Returns
+	lineageTag: 92bf8e6c-915e-4020-a1ce-174e0993a17b
+
+	measure 'Total Returns' = ```
+			SUM(Returns[quantity])
+			
+			```
+		formatString: 0
+		lineageTag: 7595100e-2c0a-4ea5-83e7-cdee99c8df45
+
+	measure 'Total Returned Quantity' = ```
+			SUM(Returns[Quantity])
+			
+			```
+		formatString: 0
+		lineageTag: dcaba30d-6e87-4b55-be47-0b5cad129f3e
+
+	measure 'Return Rate' = ```
+			DIVIDE([Total Returned Quantity], [Total Quantity])
+			
+			```
+		lineageTag: f2939640-1c56-4fc0-bc30-7180d5fc5a0b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column return_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5268f085-57b3-4e03-8eb5-525e6298b93e
+		summarizeBy: none
+		sourceColumn: return_date
+
+		variation Variation
+			isDefault
+			relationship: 77623c47-fcc8-4239-9e8e-9630188c2be0
+			defaultHierarchy: LocalDateTable_8d4ae3cd-fd89-422e-a203-0042132085ef.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: b506eb92-4a86-4136-b664-a6b1b9bbee6d
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d852a44a-f164-4d63-bb71-5d260e5826c8
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 9f01f62a-6634-4e0f-ad67-cefff5279027
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Returns = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\hamo0\Downloads\project\project\Returns.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"return_date", type date}, {"product_id", Int64.Type}, {"store_id", Int64.Type}, {"quantity", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

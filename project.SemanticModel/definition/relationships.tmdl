@@ -1,0 +1,64 @@
+relationship eb3e2510-c108-4254-aedb-cd2d2e665e28
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stores.first_opened_date
+	toColumn: LocalDateTable_1e4504f9-b06f-4799-ac55-1cebf6f427c3.Date
+
+relationship 66262401-0128-4eae-9fd6-13ea55f7d38c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stores.last_remodel_date
+	toColumn: LocalDateTable_d0e02178-5e49-42d2-a1a2-e9e1627972e1.Date
+
+relationship becfcb9c-31ba-4eff-9004-83a05291124a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customers.birthdate
+	toColumn: LocalDateTable_1ed94b06-2553-4b6c-9940-f3d748026af7.Date
+
+relationship 321a9088-1452-494a-9604-381837f1741a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Customers.acct_open_date
+	toColumn: LocalDateTable_040a6f17-8921-4056-ade1-68b8cd47e758.Date
+
+relationship 77623c47-fcc8-4239-9e8e-9630188c2be0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Returns.return_date
+	toColumn: LocalDateTable_8d4ae3cd-fd89-422e-a203-0042132085ef.Date
+
+relationship AutoDetected_ec95b9ba-21dd-4443-9bb0-520932bbe68a
+	fromColumn: Returns.product_id
+	toColumn: Products.product_id
+
+relationship AutoDetected_c22d9c12-0305-4239-8353-32d626c81922
+	fromColumn: Returns.store_id
+	toColumn: Stores.store_id
+
+relationship AutoDetected_134306a1-518e-451f-9f96-84a3264d377f
+	fromColumn: Stores.region_id
+	toColumn: Region.region_id
+
+relationship 22e4a40f-f02f-48dc-b1e7-f6cc77cc4371
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.transaction_date
+	toColumn: LocalDateTable_5858ffeb-2a29-40e4-915a-d41aa81fa89d.Date
+
+relationship 9fd2cfee-d481-4525-9592-a44bc9d4197d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.stock_date
+	toColumn: LocalDateTable_795ef29e-a092-4060-8d9a-2e6cc382c65f.Date
+
+relationship AutoDetected_e044b92e-5319-4a1f-bea1-38663196cc55
+	fromColumn: Sales.store_id
+	toColumn: Stores.store_id
+
+relationship AutoDetected_1ad93cbb-1113-4fbb-bd3a-2165458e82b9
+	fromColumn: Sales.product_id
+	toColumn: Products.product_id
+
+relationship AutoDetected_b09bdca6-f669-4439-ae87-59c8160eb4b9
+	fromColumn: Sales.customer_id
+	toColumn: Customers.customer_id
+
+relationship 5700d749-922a-4bcc-8ae8-9c37f44b69a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sales.'First Purchase Date'
+	toColumn: LocalDateTable_6c8be016-8977-4a12-8978-d4b7cd51fba9.Date
+

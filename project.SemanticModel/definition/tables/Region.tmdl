@@ -1,0 +1,42 @@
+table Region
+	lineageTag: 489f2697-6f12-463b-80a7-172d93b8e3c6
+
+	column region_id
+		dataType: int64
+		formatString: 0
+		lineageTag: a30d6b34-dde5-4d31-861b-0a6ebd99b2cf
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_district
+		dataType: string
+		lineageTag: eddc8982-a4c0-433d-81fa-eb7d0e7f88d8
+		summarizeBy: none
+		sourceColumn: sales_district
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_region
+		dataType: string
+		lineageTag: f8f950c1-5cd3-4e48-bfd8-c11aae4e0533
+		summarizeBy: none
+		sourceColumn: sales_region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Region = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\hamo0\Downloads\project\project\Region.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"region_id", Int64.Type}, {"sales_district", type text}, {"sales_region", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

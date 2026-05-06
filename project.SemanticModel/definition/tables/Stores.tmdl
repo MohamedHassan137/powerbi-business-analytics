@@ -1,0 +1,141 @@
+table Stores
+	lineageTag: 91e83e23-26d8-463d-a119-6d92a4542d0f
+
+	column store_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c35e172c-9fab-4f49-8923-a30e815a661e
+		summarizeBy: none
+		sourceColumn: store_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_id
+		dataType: int64
+		formatString: 0
+		lineageTag: dc1a828f-cd98-408c-863a-dad2664a460d
+		summarizeBy: none
+		sourceColumn: region_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_type
+		dataType: string
+		lineageTag: 11d669d7-9c10-4572-be7e-39dd23042d99
+		summarizeBy: none
+		sourceColumn: store_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_name
+		dataType: string
+		lineageTag: c4c165e0-328b-42cd-869f-27aedc12c6aa
+		summarizeBy: none
+		sourceColumn: store_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_street_address
+		dataType: string
+		lineageTag: 754d11d2-2687-4d55-96de-e623e2544bf3
+		summarizeBy: none
+		sourceColumn: store_street_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_city
+		dataType: string
+		lineageTag: 15a6e7d4-af5b-44a1-a659-27617ff6091b
+		summarizeBy: none
+		sourceColumn: store_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_state
+		dataType: string
+		lineageTag: 9cf1ecd0-867b-4ec7-84d2-e9673df8901c
+		summarizeBy: none
+		sourceColumn: store_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_country
+		dataType: string
+		lineageTag: 3b5f40fa-2831-49d6-9664-0c32c67571dd
+		summarizeBy: none
+		sourceColumn: store_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column store_phone
+		dataType: string
+		lineageTag: df7bf6a8-76da-4f95-9e7c-288f523abfba
+		summarizeBy: none
+		sourceColumn: store_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_opened_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e0b07100-7372-478c-a61f-d1e05f52fd8d
+		summarizeBy: none
+		sourceColumn: first_opened_date
+
+		variation Variation
+			isDefault
+			relationship: eb3e2510-c108-4254-aedb-cd2d2e665e28
+			defaultHierarchy: LocalDateTable_1e4504f9-b06f-4799-ac55-1cebf6f427c3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_remodel_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ef6de71a-e711-4634-827f-420c33852d05
+		summarizeBy: none
+		sourceColumn: last_remodel_date
+
+		variation Variation
+			isDefault
+			relationship: 66262401-0128-4eae-9fd6-13ea55f7d38c
+			defaultHierarchy: LocalDateTable_d0e02178-5e49-42d2-a1a2-e9e1627972e1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_sqft
+		dataType: int64
+		formatString: 0
+		lineageTag: be18ea9b-44c7-4f0a-b896-2ae19b765662
+		summarizeBy: sum
+		sourceColumn: total_sqft
+
+		annotation SummarizationSetBy = Automatic
+
+	column grocery_sqft
+		dataType: int64
+		formatString: 0
+		lineageTag: 48f411ea-a4aa-4f88-9c76-73fd5ca93730
+		summarizeBy: sum
+		sourceColumn: grocery_sqft
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stores = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\hamo0\Downloads\project\project\Stores.csv"),[Delimiter=",", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"store_id", Int64.Type}, {"region_id", Int64.Type}, {"store_type", type text}, {"store_name", type text}, {"store_street_address", type text}, {"store_city", type text}, {"store_state", type text}, {"store_country", type text}, {"store_phone", type text}, {"first_opened_date", type date}, {"last_remodel_date", type date}, {"total_sqft", Int64.Type}, {"grocery_sqft", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

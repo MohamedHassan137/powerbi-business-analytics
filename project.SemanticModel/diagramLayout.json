@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 154.53006179106126,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 190.87365114930793,
+            "y": -50
+          },
+          "nodeIndex": "Customers",
+          "nodeLineageTag": "0adfb9ea-bcea-4f39-8275-f8bd865ebbe5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 368.23440207929752,
+            "y": 443.38054418718218
+          },
+          "nodeIndex": "Products",
+          "nodeLineageTag": "487d1a7d-0770-4c0f-bc9e-23a790f39a94",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1085.8498425718349,
+            "y": 122.96530773126653
+          },
+          "nodeIndex": "Region",
+          "nodeLineageTag": "489f2697-6f12-463b-80a7-172d93b8e3c6",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 622.31163948550432,
+            "y": 771.58456773115131
+          },
+          "nodeIndex": "Returns",
+          "nodeLineageTag": "92bf8e6c-915e-4020-a1ce-174e0993a17b",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 605.817681037489,
+            "y": 28.221632293788844
+          },
+          "nodeIndex": "Sales",
+          "nodeLineageTag": "6d0fb231-baf7-4479-8188-87364ac8ed23",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 825.065563476565,
+            "y": 364.21185984058883
+          },
+          "nodeIndex": "Stores",
+          "nodeLineageTag": "91e83e23-26d8-463d-a119-6d92a4542d0f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 69.889313929108411,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
