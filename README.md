@@ -18,15 +18,6 @@ A comprehensive **Power BI** interactive dashboard designed for business intelli
 ![Dashboard Preview](images/preview.png)
 <!-- Replace with actual screenshot after uploading -->
 
-##  Files in this Repository
-
-| File/Folder              | Description                              |
-|-------------------------|------------------------------------------|
-| `project.pbix`          | Main Power BI report file                |
-| `project.pbip`          | Power BI Project format (recommended)    |
-| `Report.pdf`            | Full report export (PDF)                 |
-| `/images/`              | Screenshots and visuals                  |
-
 ##  How to Use
 
 1. Download the `project.pbix` file
